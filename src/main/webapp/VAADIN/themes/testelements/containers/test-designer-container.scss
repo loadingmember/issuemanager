@@ -1,0 +1,17 @@
+@mixin test-designer-container {
+
+  .test-designer-accordion-margins {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .test-designer-tabsheet-margins {
+    padding-top: 5px;
+    padding-bottom: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+}

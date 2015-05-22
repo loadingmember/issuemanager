@@ -1,0 +1,17 @@
+$v-focus-color: rgb(207, 207, 212);
+$v-selection-color: #152C42;
+
+
+@import "../valo/valo";
+@import "views/login-view";
+@import "containers/menu-container";
+@import "containers/header-container";
+@import "containers/test-designer-container";
+
+.testelements {
+  @include valo;
+  @include login-view;
+  @include menu-container;
+  @include header-container;
+  @include test-designer-container;
+}

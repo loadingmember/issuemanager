@@ -1,0 +1,15 @@
+@mixin login-view {
+
+//  .login-panel {
+//    @include animation(valo-animate-in-slide-up 800ms 10ms backwards, valo-animate-in-fade 600ms 100ms backwards);
+//  }
+
+  .login-view-background {
+    background: #152C42;
+  }
+
+  .login-panel-background {
+    background: rgb(247, 247, 247);
+  }
+
+}
