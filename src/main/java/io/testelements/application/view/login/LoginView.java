@@ -122,8 +122,8 @@ public class LoginView extends VerticalLayout {
     private Component buildLogo() {
         CssLayout logoLayout = new CssLayout();
 
-        Image logo = new Image(null, new ThemeResource("images/blue_logo_250px.png"));
-        logo.setSizeUndefined();
+        Image logo = new Image(null, new ThemeResource("images/spiderbite.png"));
+        logo.setWidth(100.0F, Unit.PIXELS);
 
         logoLayout.addComponent(logo);
 

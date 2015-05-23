@@ -1,7 +1,5 @@
 package io.testelements.application.view.main;
 
-import com.vaadin.data.Item;
-import com.vaadin.data.Property;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
@@ -9,9 +7,6 @@ import com.vaadin.ui.Image;
 import com.vaadin.ui.MenuBar;
 import io.testelements.application.TestElementsUI;
 import io.testelements.application.view.login.LoginView;
-
-import javax.swing.*;
-import java.util.Collection;
 
 public class HeaderContainer extends HorizontalLayout {
 
@@ -33,117 +28,85 @@ public class HeaderContainer extends HorizontalLayout {
 
     private AbsoluteLayout buildLogo() {
         AbsoluteLayout logoLayout = new AbsoluteLayout();
-        logoLayout.setSizeFull();
+        logoLayout.setWidth(100.0F, Unit.PIXELS);
 
-        logoLayout.addComponent(new Image(null, new ThemeResource("images/grey_logo_250px.png")), "top: 20px; left:10px");
+        logoLayout.addComponent(new Image(null, new ThemeResource("images/spiderbite.png")));
 
         return logoLayout;
     }
 
-    private void createIssueSelected() {
-
-        final Window createIssue = new Window("Create Issue");
-        createIssue.setWidth(300.0F, Unit.PIXELS);
-        createIssue.center();
-        final VerticalLayout createIssueLayout = new VerticalLayout();
-
-        final TextField issueName = new TextField("Name:");
-        issueName.focus();
-        createIssueLayout.addComponent(issueName);
-
-        final TextField issueDesc = new TextField("Description:");
-        issueDesc.focus();
-        createIssueLayout.addComponent(issueDesc);
-
-        final ComboBox user = new ComboBox("User:");
-        user.addItem("sjzaluk");
-        user.addItem("LoadingUser");
-        createIssueLayout.addComponent(user);
-
-        final ComboBox status = new ComboBox("Status:");
-        status.addItem("Open");
-        status.addItem("Investigating");
-        status.addItem("Implementing");
-        status.addItem("Escalated");
-        status.addItem("Resolved");
-        createIssueLayout.addComponent(status);
-
-        final ComboBox type = new ComboBox("Issue Type:");
-        type.addItem("Bug");
-        type.addItem("Task");
-        type.addItem("Improvement");
-        type.addItem("Epic");
-        type.addItem("Story");
-        type.addItem("Support Request");
-        createIssueLayout.addComponent(type);
-
-        final Label createdBy = new Label("Created By: LoadingUser");
-        createIssueLayout.addComponent(createdBy);
-
-        final Button saveIssue = new Button("Save Issue");
-        saveIssue.focus();
-        createIssueLayout.addComponent(saveIssue);
-
-        createIssue.setContent(createIssueLayout);
-
-        UI.getCurrent().addWindow(createIssue);
-    }
-
-    private void createProjectSelected() {
-
-        final Window createProject = new Window("Create Project");
-        createProject.setWidth(300.0F, Unit.PIXELS);
-        createProject.center();
-        final VerticalLayout createProjectLayout = new VerticalLayout();
-
-        final TextField projectName = new TextField("Project Name:");
-        projectName.focus();
-
-    }
-
     private MenuBar buildUserMenu() {
         MenuBar split = new MenuBar();
-        MenuBar.MenuItem file = split.addItem("File", FontAwesome.FILE, null);
+        MenuBar.MenuItem file = split.addItem("File", null);
         MenuBar.MenuItem dropdown = split.addItem("LoadingUser", new ThemeResource("images/apple_prfile.jpg"), null);
-        MenuBar.MenuItem prefences = split.addItem("Prefences", FontAwesome.GEARS, null);
-        MenuBar.MenuItem signOut = split.addItem("Sign Out", FontAwesome.SIGN_OUT, null);
 
-        file.addItem("Create Issue", new MenuBar.Command() {
+        file.addItem("Create Issue", FontAwesome.TICKET, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                createIssueSelected();
+                CreateissueView createissueView = new CreateissueView();
             }
         });
 
-        file.addItem("Create Project", new MenuBar.Command() {
+        file.addItem("Edit Issue", FontAwesome.EDIT, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                createProjectSelected();
+                EditissueView editissueView = new EditissueView();
             }
         });
 
-        prefences.setCommand(new MenuBar.Command() {
+        file.addItem("Delete Issue", FontAwesome.WARNING, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                DeleteissueView deleteissueView = new DeleteissueView();
+            }
+        });
 
+        file.addSeparator();
 
+        file.addItem("Create Project", FontAwesome.CLIPBOARD, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                CreateprojectView createprojectView = new CreateprojectView();
+            }
+        });
+
+        file.addItem("Edit Project", FontAwesome.EDIT, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                EditprojectView editprojectView = new EditprojectView();
+            }
+        });
+
+        file.addItem("Delete Project", FontAwesome.WARNING, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                DeleteprojectView deleteprojectView = new DeleteprojectView();
+            }
+        });
+
+        // Profile Dropdown Menu
+
+        dropdown.addItem("View Profile", FontAwesome.DASHBOARD, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                TestElementsUI.get().setContent(new ProfileView());
+            }
+        });
+
+        dropdown.addItem("Preferences", FontAwesome.GEARS, new MenuBar.Command() {
+            @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 TestElementsUI.get().setContent(new PrefrencesView());
             }
         });
 
-        dropdown.setCommand(new MenuBar.Command() {
+        dropdown.addSeparator();
 
-            public void menuSelected(MenuBar.MenuItem selectedItem) {
-                TestElementsUI.get().setContent(new ProfileView());
-            }
-
-        });
-
-        signOut.setCommand(new MenuBar.Command() {
-
+        dropdown.addItem("Sign Out", FontAwesome.SIGN_OUT, new MenuBar.Command() {
+            @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 TestElementsUI.get().setContent(new LoginView());
             }
-
         });
 
         split.setStyleName("user-menu-text-color");
