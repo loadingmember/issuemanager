@@ -42,7 +42,7 @@ public class HeaderContainer extends HorizontalLayout {
 
     private void createIssueSelected() {
 
-        final Window createIssue = new Window("Create Test Case");
+        final Window createIssue = new Window("Create Issue");
         createIssue.setWidth(300.0F, Unit.PIXELS);
         createIssue.center();
         final VerticalLayout createIssueLayout = new VerticalLayout();
@@ -89,21 +89,38 @@ public class HeaderContainer extends HorizontalLayout {
         UI.getCurrent().addWindow(createIssue);
     }
 
+    private void createProjectSelected() {
+
+        final Window createProject = new Window("Create Project");
+        createProject.setWidth(300.0F, Unit.PIXELS);
+        createProject.center();
+        final VerticalLayout createProjectLayout = new VerticalLayout();
+
+        final TextField projectName = new TextField("Project Name:");
+        projectName.focus();
+
+    }
+
     private MenuBar buildUserMenu() {
         MenuBar split = new MenuBar();
-        MenuBar.MenuItem issue = split.addItem("Issues", FontAwesome.FILE, null);
+        MenuBar.MenuItem file = split.addItem("File", FontAwesome.FILE, null);
         MenuBar.MenuItem dropdown = split.addItem("LoadingUser", new ThemeResource("images/apple_prfile.jpg"), null);
         MenuBar.MenuItem prefences = split.addItem("Prefences", FontAwesome.GEARS, null);
         MenuBar.MenuItem signOut = split.addItem("Sign Out", FontAwesome.SIGN_OUT, null);
 
-        issue.addItem("Create Issue", new MenuBar.Command() {
+        file.addItem("Create Issue", new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 createIssueSelected();
             }
         });
 
-
+        file.addItem("Create Project", new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                createProjectSelected();
+            }
+        });
 
         prefences.setCommand(new MenuBar.Command() {
 
