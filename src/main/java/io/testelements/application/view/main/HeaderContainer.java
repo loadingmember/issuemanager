@@ -1,5 +1,7 @@
 package io.testelements.application.view.main;
 
+import com.google.gwt.resources.client.CssResource;
+import com.sun.glass.ui.Menu;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
@@ -38,7 +40,11 @@ public class HeaderContainer extends HorizontalLayout {
     private MenuBar buildUserMenu() {
         MenuBar split = new MenuBar();
         MenuBar.MenuItem file = split.addItem("File", null);
+        MenuBar.MenuItem edit = split.addItem("Edit", null);
+        MenuBar.MenuItem github = split.addItem("GitHub", null);
         MenuBar.MenuItem dropdown = split.addItem("LoadingUser", new ThemeResource("images/apple_prfile.jpg"), null);
+
+        // File Menu
 
         file.addItem("Create Issue", FontAwesome.TICKET, new MenuBar.Command() {
             @Override
@@ -81,6 +87,24 @@ public class HeaderContainer extends HorizontalLayout {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
                 DeleteprojectView deleteprojectView = new DeleteprojectView();
+            }
+        });
+
+        // Edit Menu
+
+        edit.addItem("Undo", FontAwesome.UNDO, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                UndoView undoView = new UndoView();
+            }
+        });
+
+        // Github Menu
+
+        github.addItem("Import Project", FontAwesome.ARROW_UP, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+                ImportprojectgitView importprojectgitView = new ImportprojectgitView();
             }
         });
 

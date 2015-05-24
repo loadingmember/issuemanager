@@ -1,6 +1,5 @@
 package io.testelements.application.view.designer;
 
-import com.google.gwt.user.client.ui.TextBox;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.event.Action;
@@ -16,11 +15,6 @@ import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.ValoTheme;
 import io.testelements.application.TestElementsUI;
 import io.testelements.application.view.login.LoginView;
-
-import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.Collection;
 
 public class TestDesignerContents extends HorizontalSplitPanel {
 
@@ -86,23 +80,23 @@ public class TestDesignerContents extends HorizontalSplitPanel {
         return panel;
     }
 
-    private Panel buildProjectsPanel() {
+    public Panel buildProjectsPanel() {
         Panel panel = new Panel();
         panel.setSizeFull();
 
-        Tree testSuiteTree = new Tree();
+        Tree projectSuiteTree = new Tree();
 
         String parent1 = "Projects";
         String child1 = "Project 1";
-        testSuiteTree.addItem(parent1);
+        projectSuiteTree.addItem(parent1);
 
-        testSuiteTree.addItem(child1);
-        testSuiteTree.setParent(child1, parent1);
-        testSuiteTree.setChildrenAllowed(child1, false);
+        projectSuiteTree.addItem(child1);
+        projectSuiteTree.setParent(child1, parent1);
+        projectSuiteTree.setChildrenAllowed(child1, false);
 
-        testSuiteTree.expandItemsRecursively(parent1);
+        projectSuiteTree.expandItemsRecursively(parent1);
 
-        panel.setContent(testSuiteTree);
+        panel.setContent(projectSuiteTree);
 
         return panel;
     }
@@ -157,9 +151,9 @@ public class TestDesignerContents extends HorizontalSplitPanel {
         tabSheet.addStyleName(ValoTheme.TABSHEET_FRAMED);
         tabSheet.addStyleName(ValoTheme.TABSHEET_COMPACT_TABBAR);
 
-        tabSheet.addTab(new HorizontalLayout(), "Test Case 1", FontAwesome.CUBES).setClosable(true);
-        tabSheet.addTab(new HorizontalLayout(), "Test Suite 1", FontAwesome.BRIEFCASE).setClosable(true);
-        tabSheet.addTab(new HorizontalLayout(), "Action 1", FontAwesome.CUBE).setClosable(true);
+        tabSheet.addTab(new HorizontalLayout(), "Project 1", FontAwesome.CLIPBOARD).setClosable(true);
+        tabSheet.addTab(new HorizontalLayout(), "Project 2", FontAwesome.CLIPBOARD).setClosable(true);
+        tabSheet.addTab(new HorizontalLayout(), "Project 3", FontAwesome.CLIPBOARD).setClosable(true);
 
         layout.addComponent(tabSheet);
 

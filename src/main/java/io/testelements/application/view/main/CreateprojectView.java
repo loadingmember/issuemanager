@@ -2,6 +2,7 @@ package io.testelements.application.view.main;
 
 import com.vaadin.ui.*;
 import io.testelements.application.TestElementsUI;
+import io.testelements.application.view.designer.TestDesignerContents;
 
 public class CreateprojectView extends VerticalLayout {
 
@@ -12,7 +13,8 @@ public class CreateprojectView extends VerticalLayout {
     private void createProjectSelected() {
 
         final Window createProject = new Window("Create Project");
-        createProject.setWidth(300.0F, Unit.PIXELS);
+//        createProject.setWidth(300.0F, Unit.PIXELS);
+        createProject.setSizeUndefined();
         createProject.center();
         final VerticalLayout createProjectLayout = new VerticalLayout();
 
@@ -35,7 +37,7 @@ public class CreateprojectView extends VerticalLayout {
         saveProject.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                createProject.close();
+                TestDesignerContents testDesignerContents = new TestDesignerContents();
             }
         });
         createProjectLayout.addComponent(saveProject);
